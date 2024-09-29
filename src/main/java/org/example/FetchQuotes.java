@@ -23,6 +23,7 @@ public class FetchQuotes {
         HttpResponse<String> response;
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println(response.body());
         } catch (ConnectException e) {
             // Show a popup when the user is offline
             JOptionPane.showMessageDialog(null, "You are offline. Please check your internet connection.", "Connection Error", JOptionPane.ERROR_MESSAGE);

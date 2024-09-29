@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import java.io.IOException;
 
+// FetchQuotes.java
 import static fetch.FetchQuotes.getRandomQuote;
 
 public class Main {
@@ -37,13 +38,12 @@ public class Main {
 
         // Action listener for the button
         fetchQuoteButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 String quote = null;
                 try {
                     quote = getRandomQuote();
                 } catch (IOException | InterruptedException ex) {
-                    // The exception is already handled in getRandomQuote, so we don't need additional handling here
+                    JOptionPane.showMessageDialog(null, "Failed to fetch data", "Connection Error", JOptionPane.ERROR_MESSAGE);
                 }
                 if (quote != null) {
                     quoteArea.setText(quote);
@@ -63,12 +63,8 @@ public class Main {
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        // Run the GUI on the event-dispatching thread
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });
+    public static void main(String args[]) {
+        // Run the GUI
+        createAndShowGUI();
     }
 }
